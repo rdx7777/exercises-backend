@@ -30,14 +30,24 @@ public class FibonacciService {
     }
 
     public Long getFibonacciNumberInOrderUsingIterativeMethod(Integer fibonacciNumberInOrder) {
+        if (fibonacciNumberInOrder == null) {
+            logger.error("Attempt to get Fibonacci number providing null order number.");
+            throw new IllegalArgumentException("Fibonacci number in order cannot be null.");
+        }
         if (fibonacciNumberInOrder < 0) {
+            logger.error("Attempt to get Fibonacci number providing order number lower than 0.");
             throw new IllegalArgumentException("Fibonacci number in order cannot be lower than zero.");
         }
         return FibonacciIterative.fibonacci(fibonacciNumberInOrder);
     }
 
     public Long getFibonacciNumberInOrderUsingRecursiveMethod(Integer fibonacciNumberInOrder) {
+        if (fibonacciNumberInOrder == null) {
+            logger.error("Attempt to get Fibonacci number providing null order number.");
+            throw new IllegalArgumentException("Fibonacci number in order cannot be null.");
+        }
         if (fibonacciNumberInOrder < 0) {
+            logger.error("Attempt to get Fibonacci number providing order number lower than 0.");
             throw new IllegalArgumentException("Fibonacci number in order cannot be lower than zero.");
         }
         return FibonacciRecursive.fibonacci(fibonacciNumberInOrder);
