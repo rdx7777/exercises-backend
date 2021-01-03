@@ -24,23 +24,19 @@ public class FibonacciController {
 
     @GetMapping(value = "/check/{number}", produces = "application/json")
     public ResponseEntity<Boolean> checkFibonacciNumber(@PathVariable("number") Long number) {
-        logger.info("Attempt to check Fibonacci number.");
-        System.out.println("Hello, Fibonacci Controller here, I'm checking number: " + number);
-        Boolean result = service.checkFibonacciNumber(number);
-        System.out.println("Result: " + result);
-//        return ResponseEntity.ok(service.checkFibonacciNumber(number));
-        return ResponseEntity.ok(result);
+        logger.info("Attempt to check if {} is Fibonacci number.", number);
+        return ResponseEntity.ok(service.checkFibonacciNumber(number));
     }
 
     @GetMapping(value = "/get/iterative/{order}", produces = "application/json")
     public ResponseEntity<Long> getFibonacciIterative(@PathVariable("order") Integer order) {
-        logger.info("Attempt to get Fibonacci number in order using iterative method.");
+        logger.info("Attempt to get Fibonacci number in order using iterative method for {}.", order);
         return ResponseEntity.ok(service.getFibonacciNumberInOrderUsingIterativeMethod(order));
     }
 
     @GetMapping(value = "/get/recursive/{order}", produces = "application/json")
     public ResponseEntity<Long> getFibonacciRecursive(@PathVariable("order") Integer order) {
-        logger.info("Attempt to get Fibonacci number in order using recursive method.");
+        logger.info("Attempt to get Fibonacci number in order using recursive method for {}.", order);
         return ResponseEntity.ok(service.getFibonacciNumberInOrderUsingRecursiveMethod(order));
     }
 }
