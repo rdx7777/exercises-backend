@@ -30,8 +30,10 @@ class SieveServiceTest {
     }
 
     @Test
-    void getSieveMethodShouldThrowExceptionForNullNumber() {
+    void getSieveMethodShouldThrowExceptionForInvalidArguments() {
         assertThrows(IllegalArgumentException.class, () -> sieveService.getSieve(null),
             "Maximum number cannot be null.");
+        assertThrows(IllegalArgumentException.class, () -> sieveService.getSieve(1_000_000),
+            "Maximum number out of supported range. The maximum supported number is 100,000.");
     }
 }
