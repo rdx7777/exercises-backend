@@ -8,7 +8,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.rdx7777.exercisesbackend.service.SieveService;
+import io.github.rdx7777.exercisesbackend.service.SortService;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,11 +23,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(SieveController.class)
-class SieveControllerTest {
+@WebMvcTest(SortController.class)
+class SortControllerTest {
 
     @MockBean
-    private SieveService service;
+    private SortService service;
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,19 +36,27 @@ class SieveControllerTest {
     private ObjectMapper mapper;
 
     @Test
-    void shouldGetSieve() throws Exception {
-        Integer max = 100;
-        Integer[] result = new Integer[]{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
-        when(service.getSieve(max)).thenReturn(result);
+    void shouldGetAllResults() throws Exception {
+        Integer size = 10;
+        Integer[] unsortedArray = new Integer[]{0, 7, 5, 1, 4, 2, 3, 6, 9, 8};
+        Integer[] sortedArray = new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Map<Long, Integer[]> results = new LinkedHashMap<>();
+        results.put(1L, sortedArray);
+        results.put(2L, sortedArray);
+        results.put(3L, sortedArray);
+        results.put(4L, sortedArray);
+        results.put(5L, sortedArray);
 
-        String url = String.format("/api/sieve/%d", max);
+        when(service.getAllResults(size)).thenReturn(results);
+
+        String url = String.format("/api/sort/%d", size);
 
         mockMvc.perform(get(url)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(content().json(mapper.writeValueAsString(result)));
+            .andExpect(content().json(mapper.writeValueAsString(results)));
 
-        verify(service).getSieve(max);
+        verify(service).getAllResults(size);
     }
 }

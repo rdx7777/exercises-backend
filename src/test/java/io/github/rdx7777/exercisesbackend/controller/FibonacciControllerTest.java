@@ -1,5 +1,6 @@
 package io.github.rdx7777.exercisesbackend.controller;
 
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -38,6 +39,8 @@ class FibonacciControllerTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().string(String.valueOf(true)));
+
+        verify(service).checkFibonacciNumber(number);
     }
 
     @Test
@@ -53,6 +56,8 @@ class FibonacciControllerTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().string(String.valueOf(result)));
+
+        verify(service).getFibonacciNumberInOrderUsingIterativeMethod(number);
     }
 
     @Test
@@ -68,5 +73,7 @@ class FibonacciControllerTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(content().string(String.valueOf(result)));
+
+        verify(service).getFibonacciNumberInOrderUsingRecursiveMethod(number);
     }
 }
