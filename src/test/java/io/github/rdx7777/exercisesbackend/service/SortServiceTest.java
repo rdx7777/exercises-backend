@@ -36,7 +36,7 @@ class SortServiceTest {
             "Array size cannot be null.");
         assertThrows(IllegalArgumentException.class, () -> sortService.getAllResults(-1),
             "Array size cannot be lower than zero.");
-        assertThrows(IllegalArgumentException.class, () -> sortService.getAllResults(1_000_001),
+        assertThrows(IllegalArgumentException.class, () -> sortService.getAllResults(1_001),
             "Array size out of supported range. The maximum supported array size is 1,000,000.");
     }
 }

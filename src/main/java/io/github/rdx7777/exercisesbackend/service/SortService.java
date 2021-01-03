@@ -34,9 +34,9 @@ public class SortService {
             logger.error("Attempt to get results providing array size lower than 0.");
             throw new IllegalArgumentException("Array size cannot be lower than zero.");
         }
-        if (arraySize > 1_000_000) {
+        if (arraySize > 1_000) {
             logger.error("Attempt to get results providing array size out of supported range.");
-            throw new IllegalArgumentException("Array size out of supported range. The maximum supported array size is 1,000,000.");
+            throw new IllegalArgumentException("Array size out of supported range. The maximum supported array size is 1,000.");
         }
         int[] unsortedArray = createUnsortedArray(arraySize);
         results.clear();
@@ -60,41 +60,41 @@ public class SortService {
 
     private void getBubbleSortResult(int[] unsortedArray) {
         BubbleSort bubbleSort = new BubbleSort();
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int[] bubbleSortedArray = bubbleSort.sort(unsortedArray);
-        Long bubbleSortedTime = System.currentTimeMillis() - startTime;
+        Long bubbleSortedTime = System.nanoTime() - startTime;
         results.put(bubbleSortedTime, Arrays.stream(bubbleSortedArray).boxed().toArray(Integer[]::new));
     }
 
     private void getCollectionSortResult(int[] unsortedArray) {
         CollectionsSort collectionsSort = new CollectionsSort();
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int[] collectionSortedArray = collectionsSort.sort(unsortedArray);
-        Long collectionSortTime = System.currentTimeMillis() - startTime;
+        Long collectionSortTime = System.nanoTime() - startTime;
         results.put(collectionSortTime, Arrays.stream(collectionSortedArray).boxed().toArray(Integer[]::new));
     }
 
     private void getMergeSortResult(int[] unsortedArray) {
         MergeSort mergeSort = new MergeSort();
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int[] mergeSortedArray = mergeSort.sort(unsortedArray);
-        Long mergeSortTime = System.currentTimeMillis() - startTime;
+        Long mergeSortTime = System.nanoTime() - startTime;
         results.put(mergeSortTime, Arrays.stream(mergeSortedArray).boxed().toArray(Integer[]::new));
     }
 
     private void getQuickSortResult(int[] unsortedArray) {
         QuickSort quickSort = new QuickSort();
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int[] quickSortedArray = quickSort.sort(unsortedArray);
-        Long quickSortTime = System.currentTimeMillis() - startTime;
+        Long quickSortTime = System.nanoTime() - startTime;
         results.put(quickSortTime, Arrays.stream(quickSortedArray).boxed().toArray(Integer[]::new));
     }
 
     private void getSelectionSortResult(int[] unsortedArray) {
         SelectionSort selectionSort = new SelectionSort();
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         int[] selectionSortedArray = selectionSort.sort(unsortedArray);
-        Long selectionSortTime = System.currentTimeMillis() - startTime;
+        Long selectionSortTime = System.nanoTime() - startTime;
         results.put(selectionSortTime, Arrays.stream(selectionSortedArray).boxed().toArray(Integer[]::new));
     }
 }
