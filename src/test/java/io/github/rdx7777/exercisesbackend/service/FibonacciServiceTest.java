@@ -58,5 +58,7 @@ class FibonacciServiceTest {
             "Fibonacci number in order cannot be null.");
         assertThrows(IllegalArgumentException.class, () -> fibonacciService.getFibonacciNumberInOrderUsingRecursiveMethod(-1),
             "Fibonacci number in order cannot be lower than zero.");
+        assertThrows(IllegalArgumentException.class, () -> fibonacciService.getFibonacciNumberInOrderUsingRecursiveMethod(50),
+            "Fibonacci number in order cannot be greater than 40.");
     }
 }

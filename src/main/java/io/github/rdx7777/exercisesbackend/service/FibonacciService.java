@@ -50,6 +50,10 @@ public class FibonacciService {
             logger.error("Attempt to get Fibonacci number providing order number lower than 0.");
             throw new IllegalArgumentException("Fibonacci number in order cannot be lower than zero.");
         }
+        if (fibonacciNumberInOrder > 40) {
+            logger.error("Attempt to get Fibonacci number providing order number greater than 40.");
+            throw new IllegalArgumentException("Fibonacci number in order cannot be greater than 40.");
+        }
         return FibonacciRecursive.fibonacci(fibonacciNumberInOrder);
     }
 }
