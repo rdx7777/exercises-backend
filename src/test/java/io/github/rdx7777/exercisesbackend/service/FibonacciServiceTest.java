@@ -28,8 +28,8 @@ class FibonacciServiceTest {
             "Number for check cannot be null.");
         assertThrows(IllegalArgumentException.class, () -> fibonacciService.checkFibonacciNumber(-1L),
             "Number for check cannot be lower than zero.");
-        assertThrows(IllegalArgumentException.class, () -> fibonacciService.checkFibonacciNumber(2_000_000_001L),
-            "Number out of supported range. The maximum supported number is 2,000,000,000.");
+        assertThrows(IllegalArgumentException.class, () -> fibonacciService.checkFibonacciNumber(1_000_000_001L),
+            "Number out of supported range. The maximum supported number is 1,000,000,000.");
     }
 
     @Test

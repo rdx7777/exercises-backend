@@ -22,9 +22,9 @@ public class FibonacciService {
             logger.error("Attempt to check Fibonacci number providing number lower than 0.");
             throw new IllegalArgumentException("Number for check cannot be lower than zero.");
         }
-        if (number > 2_000_000_000) {
+        if (number > 1_000_000_000) {
             logger.error("Attempt to check Fibonacci number providing number out of supported range.");
-            throw new IllegalArgumentException("Number out of supported range. The maximum supported number is 2,000,000,000.");
+            throw new IllegalArgumentException("Number out of supported range. The maximum supported number is 1,000,000,000.");
         }
         return FibonacciChecker.isFibonacciNumber(number);
     }
