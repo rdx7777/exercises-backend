@@ -30,18 +30,16 @@ public class FibonacciService {
     }
 
     public Long getFibonacciNumberInOrderUsingIterativeMethod(Integer fibonacciNumberInOrder) {
-        if (fibonacciNumberInOrder == null) {
-            logger.error("Attempt to get Fibonacci number providing null order number.");
-            throw new IllegalArgumentException("Fibonacci number in order cannot be null.");
-        }
-        if (fibonacciNumberInOrder < 0) {
-            logger.error("Attempt to get Fibonacci number providing order number lower than 0.");
-            throw new IllegalArgumentException("Fibonacci number in order cannot be lower than zero.");
-        }
+        handleErrorsAndThrowExceptions(fibonacciNumberInOrder);
         return FibonacciIterative.fibonacci(fibonacciNumberInOrder);
     }
 
     public Long getFibonacciNumberInOrderUsingRecursiveMethod(Integer fibonacciNumberInOrder) {
+        handleErrorsAndThrowExceptions(fibonacciNumberInOrder);
+        return FibonacciRecursive.fibonacci(fibonacciNumberInOrder);
+    }
+
+    private void handleErrorsAndThrowExceptions(Integer fibonacciNumberInOrder) {
         if (fibonacciNumberInOrder == null) {
             logger.error("Attempt to get Fibonacci number providing null order number.");
             throw new IllegalArgumentException("Fibonacci number in order cannot be null.");
@@ -50,10 +48,9 @@ public class FibonacciService {
             logger.error("Attempt to get Fibonacci number providing order number lower than 0.");
             throw new IllegalArgumentException("Fibonacci number in order cannot be lower than zero.");
         }
-        if (fibonacciNumberInOrder > 40) {
-            logger.error("Attempt to get Fibonacci number providing order number greater than 40.");
-            throw new IllegalArgumentException("Fibonacci number in order cannot be greater than 40.");
+        if (fibonacciNumberInOrder > 50) {
+            logger.error("Attempt to get Fibonacci number providing order number greater than 50.");
+            throw new IllegalArgumentException("Fibonacci number in order cannot be greater than 50.");
         }
-        return FibonacciRecursive.fibonacci(fibonacciNumberInOrder);
     }
 }
