@@ -40,6 +40,7 @@ public class SortService {
         }
         int[] unsortedArray = createUnsortedArray(arraySize);
         results.clear();
+        results.put(0L, Arrays.stream(unsortedArray).boxed().toArray(Integer[]::new));
         getBubbleSortResult(unsortedArray.clone());
         getCollectionSortResult(unsortedArray.clone());
         getMergeSortResult(unsortedArray.clone());

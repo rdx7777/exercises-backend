@@ -3,6 +3,8 @@ package io.github.rdx7777.exercisesbackend.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -25,8 +27,13 @@ class SortServiceTest {
         Map<Long, Integer[]> result = sortService.getAllResults(15);
 
         // then
+        List<Integer[]> resultsForCheck= new ArrayList<>();
         for (Map.Entry<Long, Integer[]> entry : result.entrySet()) {
-            assertThat(entry.getValue()).isEqualTo(sortedArray);
+            resultsForCheck.add(entry.getValue());
+            // first value (for i = 0) skipped because method return original unsorted array at this point
+            for (int i = 1; i < resultsForCheck.size(); i++) {
+                assertThat(resultsForCheck.get(i)).isEqualTo(sortedArray);
+            }
         }
     }
 
